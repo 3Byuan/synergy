@@ -1200,6 +1200,9 @@ Config::parseAction(ConfigReadContext& s,
 		else if (args[0] == "down") {
 			direction = kBottom;
 		}
+		else if (args[0] == "any") {
+			direction = kAnyDirection;
+		}
 		else {
 			throw XConfigRead(s, "unknown direction \"%{1}\" in switchToScreen", args[0]);
 		}

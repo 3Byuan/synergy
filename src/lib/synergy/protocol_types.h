@@ -58,6 +58,7 @@ enum EDirection {
 	kRight,
 	kTop,
 	kBottom,
+	kAnyDirection,
 	kFirstDirection = kLeft,
 	kLastDirection = kBottom,
 	kNumDirections = kLastDirection - kFirstDirection + 1

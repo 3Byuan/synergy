@@ -1421,10 +1421,19 @@ Server::handleSwitchInDirectionEvent(const Event& event, void*)
 	SwitchInDirectionInfo* info =
 		static_cast<SwitchInDirectionInfo*>(event.getData());
 
-	// jump to screen in chosen direction from center of this screen
 	SInt32 x = m_x, y = m_y;
-	BaseClientProxy* newScreen =
-		getNeighbor(m_active, info->m_direction, x, y);
+	BaseClientProxy* newScreen = NULL;
+
+	if (info->m_direction == kAnyDirection) {
+		for (EDirection direction = kFirstDirection;
+             direction <= kLastDirection && !newScreen; direction = (EDirection)(direction + 1)) {
+			newScreen = getNeighbor(m_active, direction, x, y);
+		}
+	} else {
+		newScreen = getNeighbor(m_active, info->m_direction, x, y);
+	}
+
+	// jump to screen in chosen direction from center of this screen
 	if (newScreen == NULL) {
 		LOG((CLOG_DEBUG1 "no neighbor %s", Config::dirName(info->m_direction)));
 	}
