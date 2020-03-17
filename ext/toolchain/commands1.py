@@ -489,7 +489,7 @@ class InternalCommands:
 		if sys.platform == "darwin":
 		
 			# create makefiles on mac (not xcode).
-			qmake_cmd_string += " -spec macx-g++"
+			qmake_cmd_string += " -spec macx-clang"
 			
 			(major, minor) = self.getMacVersion()
 			if major == 10 and minor <= 4:
@@ -779,7 +779,7 @@ class InternalCommands:
 				frameworkRootDir = "/Library/Frameworks"
 			else:
 				# TODO: auto-detect, qt can now be installed anywhere.
-				frameworkRootDir = "/Developer/Qt5.2.1/5.2.1/clang_64/lib"
+				frameworkRootDir = "/usr/local/Cellar/qt/5.13.1/lib"
 
 			target = bundleTargetDir + "/Contents/Frameworks"
 
@@ -788,7 +788,7 @@ class InternalCommands:
 				for dir in dirs:
 					if dir.startswith("Qt"):
 						shutil.copy(
-							frameworkRootDir + "/" + dir + "/Contents/Info.plist",
+							frameworkRootDir + "/" + dir + "/Versions/5/Resources/Info.plist",
 							target + "/" + dir + "/Resources/")
 
 	def symlink(self, source, target):
