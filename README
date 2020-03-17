@@ -14,3 +14,20 @@ For detailed compile instructions:
 https://github.com/symless/synergy/wiki/Compiling
 
 Happy hacking!
+
+
+编译指导参考：
+===========
+
+I was able to get this working on Yosemite with the following command:
+
+./hm.sh conf -g2 --mac-sdk 10.10 --mac-identity Yosemite
+Of course, this will only work given you have the dependencies. You can install them with the Homebrew package manager.
+
+brew install cmake qt
+Additionally, you'll want to build it with:
+
+./hm.sh build
+And finally, to install it, you'll get the compiled results from the bin folder, i.e. Synergy.app.
+
+link from: https://stackoverflow.com/questions/26923227/how-to-compile-synergy-on-mac
